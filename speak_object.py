@@ -29,32 +29,41 @@ def callback(data):
 	delta_time = current_time - last_calltime
 
 	if abs(delta_time.total_seconds()) >= 3:
-		if "Red" in cube:
-			if last_color != "Red":
-				print("Red/AA")
+		if "Red Cup" in cube:
+			if last_color != "redsmall":
+				print("Red Small")
 				#speaker.say("Did you mean Red?")
-				last_color = "Red"
+				last_color = "redsmall"
 				colors.write("\n")
-				colors.write("\nareaa")
+				colors.write("\narears")
 				colors.close()
 
-		elif "Green" in cube:
-			if last_color != "Green":
-				print("Green/Bb")
+		elif "Red Plate" in cube:
+			if last_color != "redlarge":
+				print("Red Large")
 				#speaker.say("Did you mean Green?")
-				last_color = "Green"
+				last_color = "redlarge"
 				colors.write("\n")
-				colors.write("\nareab")
+				colors.write("\narearl")
 				colors.close()
 				
 
-		else:
-			if last_color != "Blue":
-				print("Blue/CC")
+		elif "Green Cup" in cube:
+			if last_color != "greensmall":
+				print("Green Small")
 				#speaker.say("Did you mean Blue?")
-				last_color = "Blue"
+				last_color = "greensmall"
 				colors.write("\n")
-				colors.write("\nareac")
+				colors.write("\nareags")
+				colors.close()
+
+		else:
+			if last_color != "greenlarge":
+				print("Green Large")
+				#speaker.say("Did you mean Blue?")
+				last_color = "greenlarge"
+				colors.write("\n")
+				colors.write("\nareagl")
 				colors.close()
 
 

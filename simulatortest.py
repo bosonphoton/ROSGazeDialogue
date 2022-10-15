@@ -10,7 +10,7 @@ import pathlib
 import pandas as pd
 import os 
 ########################
-from get_dialogue import hear
+from get_dialogue import hear_color, hear_size, confirm_rs, confirm_rl, confirm_gs, confirm_gl
 import rospy
 import actionlib
 
@@ -71,43 +71,56 @@ class Simulator:
 
 		#arm = MoveGroupInteface()
 
-		if a_idx == 0:
-			return last_color
+		if a_idx == 0: #gaze
+			return "arears"
 
-		elif a_idx < 4:
-			dialogue = hear(last_color)
-			return dialogue
+		elif a_idx == 1: #ask color
+			dialogue_c = hear_color()
+			return dialogue_c
 			
+		elif a_idx == 2: #ask size
+			dialogue_s = hear_size()
+			return dialogue_s
+		
+		elif a_idx == 3: 
+			confirmrs = confirm_rs()
+			return confirmrs
+
 		elif a_idx == 4:
-			msg = "areaa"
-			pub = rospy.Publisher("move_robot", String, queue_size = 10)
-			rospy.loginfo(msg)
-			pub.publish(msg)
+			confirmrl = confirm_rl()
+			return confirmrl
+
+		elif a_idx == 5:
+			confirmgs = confirm_gs()
+			return confirmgs
+
+		elif a_idx == 6:
+			confirmgl = confirm_gl()
+			return confirmgl
+
+		elif a_idx == 7:
 			#arm.plan_joint_goal(0,-94,74,-78,-89,-8.9)
 			script1 = "/home/chelsea/catkin_ws/src/ur5_yan/scripts/pomdp/ur5_init_node1.py"
 			subprocess.call(['python', script1], stdout=sys.stdout, stderr=subprocess.STDOUT)
 			return "na"
-			
 
-		elif a_idx == 5:
-			msg = "areab"
-			pub = rospy.Publisher("move_robot", String, queue_size = 10)
-			rospy.loginfo(msg)
-			pub.publish(msg)
-			#arm.plan_joint_goal(0,-80,72,-102,-89,-8)
+		elif a_idx == 8:
+			#arm.plan_joint_goal(0,-94,74,-78,-89,-8.9)
 			script2 = "/home/chelsea/catkin_ws/src/ur5_yan/scripts/pomdp/ur5_init_node2.py"
 			subprocess.call(['python', script2], stdout=sys.stdout, stderr=subprocess.STDOUT)
 			return "na"
-		else: 
-			msg = "areac"
-			pub = rospy.Publisher("move_robot", String, queue_size = 10)
-			rospy.loginfo(msg)
-			pub.publish(msg)
-			#arm.plan_joint_goal(0,-80,57,-102,-89,-8)
-			script3 = "/home/chelsea/catkin_ws/src/ur5_yan/scripts/pomdp/ur5_init_node3.py"			
+
+		elif a_idx == 9:
+			#arm.plan_joint_goal(0,-94,74,-78,-89,-8.9)
+			script3 = "/home/chelsea/catkin_ws/src/ur5_yan/scripts/pomdp/ur5_init_node3.py"
 			subprocess.call(['python', script3], stdout=sys.stdout, stderr=subprocess.STDOUT)
 			return "na"
-			#publish to a ROS topic where arm is subscriber
+
+		elif a_idx == 10:
+			#arm.plan_joint_goal(0,-94,74,-78,-89,-8.9)
+			script4 = "/home/chelsea/catkin_ws/src/ur5_yan/scripts/pomdp/ur5_init_node4.py"
+			subprocess.call(['python', script4], stdout=sys.stdout, stderr=subprocess.STDOUT)
+			return "na"
 
 
 	def run(self):
